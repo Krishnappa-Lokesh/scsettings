@@ -1,0 +1,45 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="scsetting.controller.CostCenterList">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" 
+		showNavButton="{device>/system/phone}" title="{i18n>ccListViewTitle}"
+		busy="{ccListView>/busy}" busyIndicatorDelay="{ccListView>/delay}">
+		<semantic:content>
+			<Table id="table" width="auto" class="sapUiResponsiveMargin" items="{modelCostCenter>/costCenterSet}"
+				noDataText="{ccListView>/tableNoDataText}" busyIndicatorDelay="{ccListView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" includeItemInSelection="true">
+				<headerToolbar>
+					<Toolbar>
+						<content>
+							<SearchField id="searchField" search="onSearch"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<items>
+					<ColumnListItem type="Navigation" press="onTableItemPress">
+						<cells>
+							<Text text="{modelCostCenter>Kostl}" id="__listItem1"/>
+							<Text text="{modelCostCenter>Ltext}" id="__listItem2"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="__column0" minScreenWidth="Phone" demandPopin="true">
+						<header>
+							<Text id="__text11" visible="false"/>
+						</header>
+					</Column>
+					<Column id="__column2" minScreenWidth="Tablet" demandPopin="true"></Column>
+				</columns>
+			</Table>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{deliveryAddView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

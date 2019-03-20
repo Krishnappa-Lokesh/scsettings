@@ -1,0 +1,28 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="scsetting.controller.Category">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>categoryTitle}" busy="{categoryView>/busy}" busyIndicatorDelay="{categoryView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{Firstname} {Lastname}"/>
+			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" layout="ResponsiveGridLayout" id="__form0" columnsL="1">
+				
+				<sap.ui.layout.form:content>
+					<Label text="Default Category:" id="categoryIdLabel"/>
+					<Input width="100%" id="categoryInput" value="{CategoryId}" editable="false"/>
+					<Button width="40px" id="btnCategoryList" activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+					<Label text="Category Text" id="categoryTextLabel"/>
+					<Input width="100%" id="categoryTextInput" value="{CategoryText}" editable="false"/>
+
+					
+				</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{categoryView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

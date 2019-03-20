@@ -1,0 +1,333 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"id": "scsetting",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZSC_USERSET_SRV_01/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"adrsService": {
+				"uri": "/sap/opu/odata/sap/ZMINS_ADDRESS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadataAdrs.xml"
+				}
+			},
+			"ccService": {
+				"uri": "/sap/opu/odata/sap/Z_VH_COSTCENTER_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadataCc.xml"
+				}
+			},
+			"ioService": {
+				"uri": "/sap/opu/odata/sap/Z_VH_INTORDER_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadataIo.xml"
+				}
+			},
+			"wbsService": {
+				"uri": "/sap/opu/odata/sap/Z_VH_WBS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadataWbs.xml"
+				}
+			},
+			"glService": {
+				"uri": "/sap/opu/odata/sap/Z_VH_GLACNT_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadataGL.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "sap.ui.ui5-template-plugin.2masterdetail",
+			"version": "1.44.7"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "scsetting.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.36.0",
+			"libs": {
+				"sap.ui.core": {
+					"minVersion": "1.36.0"
+				},
+				"sap.m": {
+					"minVersion": "1.36.0"
+				},
+				"sap.ui.layout": {
+					"minVersion": "1.36.0"
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "scsetting.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"settings": {
+					"metadataUrlParams": {
+						"sap-documentation": "heading"
+					},
+					"defaultBindingMode": "TwoWay"
+				},
+				"preload": true
+			},
+			"localModelmasterItems": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/masterItems.json"
+			},
+			"modelAddress": {
+				"dataSource": "adrsService",
+				"preload": false,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"modelCostCenter": {
+				"dataSource": "ccService",
+				"preload": false,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"modelInternalOrder": {
+				"dataSource": "ioService",
+				"preload": false,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"modelWbs": {
+				"dataSource": "wbsService",
+				"preload": false,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"modelGl": {
+				"dataSource": "glService",
+				"preload": false,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "scsetting.view",
+				"controlId": "idAppControl",
+				"controlAggregation": "detailPages",
+				"bypassed": {
+					"target": [
+						"master",
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "master",
+					"target": "master"
+				},
+				{
+					"pattern": "object/{objectId}",
+					"name": "object",
+					"target": "object"
+				},
+				{
+					"pattern": "deliveryAdrs/{objectId}",
+					"name": "deliveryAdrs",
+					"target": "deliveryAdrs"
+				},
+				{
+					"pattern": "delvAdrsList/{mainContext}",
+					"name": "delvAdrsList",
+					"target": "delvAdrsList"
+				},
+				{
+					"pattern": "plant/{objectId}",
+					"name": "plant",
+					"target": "plant"
+				},
+				{
+					"pattern": "plantList/{mainContext}",
+					"name": "plantList",
+					"target": "plantList"
+				},
+				{
+					"pattern": "costObject/{objectId}",
+					"name": "costObject",
+					"target": "costObject"
+				},
+				{
+					"pattern": "costCenterList/{mainContext}",
+					"name": "ccList",
+					"target": "ccList"
+				},
+				{
+					"pattern": "InternalOrderList/{mainContext}",
+					"name": "ioList",
+					"target": "ioList"
+				},
+				{
+					"pattern": "WbsList/{mainContext}",
+					"name": "wbsList",
+					"target": "wbsList"
+				},
+				{
+					"pattern": "glAccount/{objectId}",
+					"name": "glAccount",
+					"target": "glAccount"
+				},
+				{
+					"pattern": "glAccountList/{mainContext}",
+					"name": "glAccountList",
+					"target": "glAccountList"
+				},
+				{
+					"pattern": "category/{objectId}",
+					"name": "category",
+					"target": "category"
+				},
+				{
+					"pattern": "categoryList/{mainContext}",
+					"name": "categoryList",
+					"target": "categoryList"
+				}
+			],
+			"targets": {
+				"master": {
+					"viewName": "Master",
+					"viewLevel": 1,
+					"controlAggregation": "masterPages"
+				},
+				"object": {
+					"viewName": "Detail",
+					"viewLevel": 2
+				},
+				"deliveryAdrs": {
+					"viewName": "DeliveryAddress",
+					"viewLevel": 2
+				},
+				"delvAdrsList": {
+					"viewName": "DelvAdrsList",
+					"viewLevel": 3
+				},
+				"plant": {
+					"viewName": "Plant",
+					"viewLevel": 2
+				},
+				"plantList": {
+					"viewName": "PlantList",
+					"viewLevel": 3
+				},
+				"costObject": {
+					"viewName": "CostObject",
+					"viewLevel": 2
+				},
+				"ccList": {
+					"viewName": "CostCenterList",
+					"viewLevel": 3
+				},
+				"ioList": {
+					"viewName": "InternalOrderList",
+					"viewLevel": 3
+				},
+				"wbsList": {
+					"viewName": "WbsList",
+					"viewLevel": 3
+				},
+				"glAccount": {
+					"viewName": "GlAccount",
+					"viewLevel": 2
+				},
+				"glAccountList": {
+					"viewName": "GlAccountList",
+					"viewLevel": 3
+				},
+				"category": {
+					"viewName": "Category",
+					"viewLevel": 2
+				},
+				"categoryList": {
+					"viewName": "CategoryList",
+					"viewLevel": 3
+				},
+				"productCategory": {
+					"viewName": "ProductCategory",
+					"viewLevel": 2
+				},
+				"detailObjectNotFound": {
+					"viewName": "DetailObjectNotFound"
+				},
+				"detailNoObjectsAvailable": {
+					"viewName": "DetailNoObjectsAvailable"
+				},
+				"notFound": {
+					"viewName": "NotFound"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zsc_settings/webapp",
+		"_version": "1.1.0"
+	}
+}

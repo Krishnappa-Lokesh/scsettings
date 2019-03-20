@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:semantic="sap.m.semantic" controllerName="scsetting.controller.Master">
+	<semantic:MasterPage id="page" title="{masterView>/title}" navButtonPress="onNavBack" showNavButton="true">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle/>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:content>
+			<PullToRefresh id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh"/>
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+<!--			<List id="list" 
+				items="{ path: 'localModelmasterItems>/masterListItems', sorter: { path: 'id', descending: false } }"
+				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="false" selectionChange="onSelectionChange">
+-->			
+			<List id="list" items="{       path: '/settingsListSet',       sorter: {        path: 'SettinsList',        descending: false        },       groupHeaderFactory: '.createGroupHeader'      }" busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
+				
+				<infoToolbar>
+					<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings">
+						<Title id="filterBarLabel" text="{masterView>/filterBarLabel}"/>
+					</Toolbar>
+				</infoToolbar>
+				<items>
+<!--					<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{localModelmasterItems>value}"></ObjectListItem>
+-->				
+					<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{SettinsList}">
+				
+					</ObjectListItem>
+
+				</items>
+			</List>
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="saveButton" press="onSave" visible="{!device>/system/phone}"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancelButton" press="onCancel" visible="{!device>/system/phone}"/>
+		</semantic:cancelAction>
+	</semantic:MasterPage>
+</mvc:View>

@@ -1,0 +1,28 @@
+{ 
+	"masterListItems" : [
+		{
+			"id": "1",
+			"value":"Personal Settings"
+		},
+		{
+			"id": "2",
+			"value":"Delivery Address"
+		},
+		{
+			"id": "3",
+			"value":"Plant"
+		},
+		{
+			"id": "4",
+			"value":"Cost Object"
+		},
+		{
+			"id": "5",
+			"value":"GL Account"
+		},
+		{
+			"id": "6",
+			"value":"Product Category"
+		}
+	]
+}

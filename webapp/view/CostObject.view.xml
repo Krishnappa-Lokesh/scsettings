@@ -1,0 +1,63 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" 
+		xmlns:footerbar="sap.ushell.ui.footerbar" 
+		controllerName="scsetting.controller.CostObject">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" 
+			showNavButton="{device>/system/phone}" 
+			title="{i18n>costObjectTitle}" 
+			busy="{costObjectView>/busy}" 
+			busyIndicatorDelay="{costObjectView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{Firstname} {Lastname}"/>
+			<sap.ui.layout.form:SimpleForm 
+					xmlns:sap.ui.layout.form="sap.ui.layout.form" 
+					xmlns:sap.ui.core="sap.ui.core" 
+					editable="true" 
+					layout="ResponsiveGridLayout" 
+					id="__form0">
+				<sap.ui.layout.form:content>
+
+					<Label text="Default Account Assignment" id="labelDefAa"/>
+
+					<RadioButtonGroup width="100%" columns="1" 
+							selectedIndex="{ path: 'ZaaType', formatter: '.formatter.accountAssignmentValue' }" 
+							id="rBtnGroupAcctAsnmt" select="onRadioBtnSelected" >
+					    <buttons>
+					        <RadioButton groupName="rBtnGroupAcctAsnmt" text="Cost Center" id="rBtnCostCenter" />
+					        <RadioButton groupName="rBtnGroupAcctAsnmt" text="Internal Order" id="rBtnInternalOrder"/>
+					        <RadioButton groupName="rBtnGroupAcctAsnmt" text="WBS Element" id="rBtnWbsElement"/>
+					        <RadioButton groupName="rBtnGroupAcctAsnmt" text="Asset" id="rBtnAsset"/>
+					     </buttons>
+					</RadioButtonGroup>
+
+					
+					<Label text="Cost Center" id="labelCostCenter"/>
+					<Input width="100%" id="inputCostCenter" value="{CostCenter}" editable="false" />
+					<Button width="40px" id="btnCCList"  activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+
+					<Label text="Internal Order" id="labelInternalOrder"/>
+					<Input width="100%" id="inputInternalOrder" value="{InternalOrder}" editable="false"/>
+					<Button width="40px" id="btnIOList" activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+
+					<Label text="WBS Element" id="labelWbsElement"/>
+					<Input width="100%" id="inputWbsElement" value="{WbsElemE}" editable="false"/>
+					<Button width="40px" id="btnWBSList" activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+
+					<Label text="Asset" id="labelAsset"/>
+					<Input width="100%" id="inputAsset" 
+					value="{ path: 'AssetNo', type: 'sap.ui.model.type.String', constraints:{  maxLength: 12, nullable:false } }" liveChange="onLiveChange"/>
+
+
+				</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{costObjectView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

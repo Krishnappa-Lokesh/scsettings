@@ -1,0 +1,93 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="scsetting.controller.Detail">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>personalSettingsTitle}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" >
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{Firstname} {Lastname}"/>
+			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" layout="ResponsiveGridLayout" id="__form0">
+				<sap.ui.layout.form:content>
+					<Label text="User ID" id="lblUserId"/>
+					<Input width="100%" id="__inputUserId" value="{Userid}" editable="false"/>
+					<Label text="Title" id="lblTitle"/>
+					<ComboBox id="cbFormOfAdd" 
+							items="{ path: '/formOfAddSet', sorter: { path: 'Title' } }" 
+							required="true" 
+							selectedKey="{Zfofadrskey}"
+							>
+						<core:Item id="cbItemFormOfAdd" key="{Title}" text="{TitleMedi}"/>
+					</ComboBox>
+					<Label text="Academic Title" id="lblAcademicTitle"/>
+					<ComboBox id="cbAcademicTitle" 
+							items="{ path: '/academicTitleSet', sorter: { path: 'TitleKey' } }" 
+							required="false" 
+							selectedKey="{Zttlkey}"
+							>
+						<core:Item id="cbItemAcademicTitle" key="{TitleKey}" text="{TitleDscr}"/>
+					</ComboBox>
+					<Label text="First Name" id="labelFirstName"/>
+					<Input width="100%" id="__input0" value="{Firstname}" liveChange="onLiveChange"/>
+					<Label text="Last Name" id="labelLastName"/>
+					<Input width="100%" id="__input1" value="{Lastname}" liveChange="onLiveChange"/>
+
+					<!-- Phone Number -->
+					<Label text="Phone No. /Ext" id="lblPhoneNo"/>
+
+<!--					 <MaskInput mask = "9999999999" width="50%" id="inPhoneNo" required="true"   
+						placeholderSymbol = "" placeholder="Enter 10 Digit Phone Number ..."
+						value="{ path: 'Tel1Numbr', 
+								type: 'sap.ui.model.odata.type.String',  
+								constraints:{  minLength: 10, maxLength: 10, nullable:false } }"  
+						change="onLiveChange"/> 
+-->
+					 <Input  width="50%" id="inPhoneNo" required="true"  type="Number"  
+						placeholder="Enter 10 Digit Phone Number ..."
+						value="{ path: 'Tel1Numbr', 
+								type: 'sap.ui.model.type.String',  
+								constraints:{  minLength: 10, maxLength: 10, nullable:false } }"  
+						validationError="handleValidationError"	
+						validationSuccess="handleValidationSuccess"
+						liveChange="onLiveChange"/> 
+
+
+					<!-- <Input width="25%" id="inPhoneExt" type="Number" value="{Tel1Ext}" liveChange="onLiveChange"/> -->
+					<!-- <MaskInput mask = "9999" width="25%" id="inPhoneExt" required="false"   placeholderSymbol = "_" placeholder="4 Digit Ext ..."
+							value="{ path: 'Tel1Ext', type: 'sap.ui.model.odata.type.String' , constraints:{  maxLength:4, nullable:false } }"  change="onLiveChange"/> -->
+
+					<!-- Fax Number -->
+					<!--<Input width="75%" id="inFaxNo" value="{FaxNumber}" liveChange="onLiveChange"/> -->
+					<Label text="Fax No. /Ext" id="lblFaxNo"/>
+<!--					<MaskInput mask = "9999999999" width="50%" id="inFaxNo" required="false"   placeholderSymbol = "_" placeholder="Enter 10 Digit Fax Number ..."
+							value="{ path: 'FaxNumber', type: 'sap.ui.model.odata.type.String' , constraints:{  maxLength:10, nullable:false } }"  change="onLiveChange"/>
+-->
+					 <Input  width="50%" id="inFaxNo" required="false"   type="Number"
+						placeholder="Enter 10 Digit Fax Number ..."
+						value="{ path: 'FaxNumber', 
+								type: 'sap.ui.model.type.String',  
+								constraints:{ minLength: 0, maxLength: 10, nullable:false } }"  
+						validationError="handleValidationError"		
+						validationSuccess="handleValidationSuccess"
+						liveChange="onLiveChange"/> 
+
+
+					<!-- <Input width="25%" id="inFaxExt" value="{Tel2Ext}" liveChange="onLiveChange"/> -->
+					<!-- <MaskInput mask = "9999" width="25%" id="inFaxExt" required="false"   placeholderSymbol = "_" placeholder="4 Digit Ext ..."
+							value="{ path: 'Tel2Ext', type: 'sap.ui.model.odata.type.String' , constraints:{  maxLength:4, nullable:false } }"  change="onLiveChange"/> -->
+
+
+					<Label text="E-Mail" id="lblEmail"/>
+					<Input width="100%" id="inEMail" value="{EMail}" liveChange="onLiveChange"/>
+				</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	<semantic:saveAction>
+	    <semantic:SaveAction id="actionSave"  press="onSave"  visible="{device>/system/phone}" enabled="false"/>
+	</semantic:saveAction>
+	</semantic:DetailPage>
+</mvc:View>

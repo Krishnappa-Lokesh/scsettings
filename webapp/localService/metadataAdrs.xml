@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZMINS_ADDRESS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="address" sap:content-version="1">
+				<Key><PropertyRef Name="Addrnumber"/></Key><Property Name="Addrnumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="NameCo" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Building" Type="Edm.String" Nullable="false" MaxLength="20" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Floor" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Roomnumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="PostCode1" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="TelNumber" Type="Edm.String" Nullable="false" MaxLength="30" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TelExtens" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZMINS_ADDRESS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="addressSet" EntityType="ZMINS_ADDRESS_SRV.address" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/></EntityContainer><atom:link rel="self"
+				href="https://webidecp-bf0a8ac80.dispatcher.us1.hana.ondemand.com/destinations/GWD/sap/opu/odata/sap/ZMINS_ADDRESS_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-bf0a8ac80.dispatcher.us1.hana.ondemand.com/destinations/GWD/sap/opu/odata/sap/ZMINS_ADDRESS_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

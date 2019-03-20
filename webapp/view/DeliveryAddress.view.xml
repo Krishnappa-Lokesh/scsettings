@@ -1,0 +1,53 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="scsetting.controller.DeliveryAddress">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>deliveryAddressTitle}"
+		busy="{deliveryAddView>/busy}" busyIndicatorDelay="{deliveryAddView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{Firstname} {Lastname}"/>
+			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" 
+				xmlns:sap.ui.core="sap.ui.core" editable="true"
+				layout="ResponsiveGridLayout" id="__form0" labelMinWidth="200">
+				<sap.ui.layout.form:content>
+					<Label text="Address No" id="lblAddressNo"/>
+					<Input width="100%" id="inAddressNo" value="{Addrnumber}" editable="false"/>
+					<Button width="40px" id="btnAdrsList" activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+					<Label text="C/O" id="lblCo"/>
+					<Input width="100%" id="inCo" value="{NameCo}" editable="false"/>
+					<Label text="Street / House Number" id="lblStreet"/>
+					<Input width="100%" id="inStreet" value="{Street}" editable="false"/>
+					<Label text="City" id="lblCity"/>
+					<Input width="100%" id="inCity" value="{City1}" editable="false"/>
+					<Label text="Region" id="lblRegion"/>
+					<Input width="100%" id="inRegion" value="{Region}" editable="false"/>
+					<Label text="Postal Code" id="lblPostalCode"/>
+					<Input width="100%" id="inPostalCode" value="{PostCode1}" editable="false"/>
+					<Label text="Country" id="lblCountry"/>
+					<Input width="100%" id="inCountry" value="{Country}" editable="false"/>
+					<Label text="Building" id="lblBuilding"/>
+					<Input width="100%" id="inBuilding" 
+					value="{ path: 'BuildingP', type: 'sap.ui.model.type.String', constraints:{  maxLength: 10, nullable:false } }" liveChange="onLiveChange"/>
+					 
+					<Label text="Room" id="lblRoom"/>
+					<Input width="100%" id="inRoom"  
+					value="{ path: 'RoomNoP', type: 'sap.ui.model.type.String', constraints:{  maxLength: 10, nullable:false } }" liveChange="onLiveChange"/>
+
+
+					<Label text="Floor" id="lblFloor"/>
+					<Input width="100%" id="inFloor" 
+					value="{ path: 'FloorP', type: 'sap.ui.model.type.String', constraints:{  maxLength: 10, nullable:false } }" liveChange="onLiveChange"/>
+
+
+				</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{deliveryAddView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

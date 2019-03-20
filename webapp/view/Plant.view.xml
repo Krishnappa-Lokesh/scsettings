@@ -1,0 +1,29 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="scsetting.controller.Plant">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>plantTitle}"
+		busy="{plantView>/busy}" busyIndicatorDelay="{plantView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{Firstname} {Lastname}"/>
+			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+				layout="ResponsiveGridLayout" id="__form0" columnsL="1">
+				<sap.ui.layout.form:content>
+					<Label text="Default Plant" id="plantIdLabel"/>
+					<Input width="100%" id="plantInput1" value="{ZplantName1}" editable="false"/>
+					<Button width="40px" id="btnPlantList" activeIcon="sap-icon://search" icon="sap-icon://search" press="buttonPressed"/>
+					<Label text="Location" id="plantLocationLabel"/>
+					<Input width="100%" id="plantInput2" value="{ZplantName2}" editable="false"/>
+
+				</sap.ui.layout.form:content>
+			</sap.ui.layout.form:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{plantView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>
